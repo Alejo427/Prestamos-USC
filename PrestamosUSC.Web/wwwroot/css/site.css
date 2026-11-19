@@ -1,0 +1,32 @@
+:root {
+    --usc-azul: #0b2c5f;
+    --usc-azul-claro: #1c4a94;
+    --usc-dorado: #f2a900;
+}
+
+body { background-color: #f4f6fa; min-height: 100vh; display: flex; flex-direction: column; }
+main { flex: 1 0 auto; }
+
+.bg-usc { background-color: var(--usc-azul); }
+.navbar-brand span { color: var(--usc-dorado); }
+
+.btn-usc { background-color: var(--usc-azul); border-color: var(--usc-azul); color: #fff; }
+.btn-usc:hover, .btn-usc:focus { background-color: var(--usc-azul-claro); border-color: var(--usc-azul-claro); color: #fff; }
+.btn-outline-usc { color: var(--usc-azul); border-color: var(--usc-azul); }
+.btn-outline-usc:hover { background-color: var(--usc-azul); color: #fff; }
+
+.hero { background: linear-gradient(135deg, var(--usc-azul), var(--usc-azul-claro)); color: #fff; border-radius: .75rem; }
+.stat-card { border: 0; border-left: 5px solid var(--usc-dorado); }
+.stat-card .display-6 { font-weight: 700; color: var(--usc-azul); }
+
+.recurso-card { transition: transform .15s ease, box-shadow .15s ease; }
+.recurso-card:hover { transform: translateY(-3px); box-shadow: 0 .5rem 1rem rgba(0,0,0,.12); }
+
+footer { flex-shrink: 0; }
+
+/* Ajustes para teléfonos */
+@media (max-width: 575.98px) {
+    h1.h3 { font-size: 1.25rem; }
+    .hero { padding: 1.5rem !important; }
+    .btn-group-sm-full { width: 100%; }
+}

@@ -1,0 +1,31 @@
+@model IEnumerable<UsuarioViewModel>
+@{ ViewData["Title"] = "Usuarios y roles"; }
+
+<h1 class="h3 mb-3">Usuarios y roles</h1>
+
+<div class="card shadow-sm">
+    <div class="table-responsive">
+        <table class="table align-middle mb-0">
+            <thead class="table-light"><tr><th>Nombre</th><th>Correo</th><th>Rol</th><th class="text-end">Acción</th></tr></thead>
+            <tbody>
+            @foreach (var u in Model)
+            {
+                <tr>
+                    <td>@u.Nombre</td>
+                    <td>@u.Email</td>
+                    <td>
+                        @if (u.EsAdministrador) { <span class="badge bg-warning text-dark">Administrador</span> }
+                        else { <span class="badge bg-info text-dark">Estudiante</span> }
+                    </td>
+                    <td class="text-end">
+                        <form asp-action="CambiarRol" method="post">
+                            <input type="hidden" name="id" value="@u.Id" />
+                            <button class="btn btn-outline-usc btn-sm">@(u.EsAdministrador ? "Pasar a Estudiante" : "Hacer Administrador")</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

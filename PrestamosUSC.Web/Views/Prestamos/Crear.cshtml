@@ -1,0 +1,49 @@
+@model PrestamoCreateViewModel
+@{ ViewData["Title"] = "Solicitar préstamo"; }
+
+<div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-7">
+        <div class="card shadow-sm">
+            <div class="card-body p-4">
+                <h1 class="h4 mb-1">Solicitar préstamo</h1>
+                <p class="text-muted mb-3">@Model.RecursoResumen<br /><small>Duración máxima: @Model.DuracionMaxima</small></p>
+
+                <form asp-action="Crear" method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
+                    <input type="hidden" asp-for="RecursoId" />
+                    <div class="row">
+                        <div class="col-12 col-sm-6 mb-3">
+                            <label asp-for="FechaInicio" class="form-label"></label>
+                            <input asp-for="FechaInicio" type="datetime-local" class="form-control" />
+                            <span asp-validation-for="FechaInicio" class="text-danger small"></span>
+                        </div>
+                        <div class="col-12 col-sm-6 mb-3">
+                            <label asp-for="FechaFin" class="form-label"></label>
+                            <input asp-for="FechaFin" type="datetime-local" class="form-control" />
+                            <span asp-validation-for="FechaFin" class="text-danger small"></span>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Observaciones" class="form-label"></label>
+                        <textarea asp-for="Observaciones" class="form-control" rows="2"></textarea>
+                    </div>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button type="submit" class="btn btn-usc">Confirmar préstamo</button>
+                        <a asp-controller="Recursos" asp-action="Index" class="btn btn-outline-secondary">Volver al catálogo</a>
+                    </div>
+                </form>
+
+                @if (ViewBag.PermiteCola == true)
+                {
+                    <hr />
+                    <form asp-action="UnirseCola" method="post" class="d-grid d-sm-block">
+                        <input type="hidden" name="recursoId" value="@Model.RecursoId" />
+                        <button type="submit" class="btn btn-warning"><i class="bi bi-hourglass-split"></i> Unirme a la lista de espera</button>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts { <partial name="_ValidationScriptsPartial" /> }
