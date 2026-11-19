@@ -1,0 +1,69 @@
+@model RecursoFormViewModel
+
+<form asp-action="@(Model.Id == 0 ? "Create" : "Edit")" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-2"></div>
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="Tipo" />
+
+    <div class="row">
+        <div class="col-12 col-md-4 mb-3">
+            <label asp-for="Codigo" class="form-label"></label>
+            <input asp-for="Codigo" class="form-control" />
+            <span asp-validation-for="Codigo" class="text-danger small"></span>
+        </div>
+        <div class="col-12 col-md-8 mb-3">
+            <label asp-for="Nombre" class="form-label"></label>
+            <input asp-for="Nombre" class="form-control" />
+            <span asp-validation-for="Nombre" class="text-danger small"></span>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Descripcion" class="form-label"></label>
+        <textarea asp-for="Descripcion" class="form-control" rows="2"></textarea>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-6 mb-3">
+            <label asp-for="Ubicacion" class="form-label"></label>
+            <input asp-for="Ubicacion" class="form-control" />
+            <span asp-validation-for="Ubicacion" class="text-danger small"></span>
+        </div>
+        <div class="col-12 col-md-6 mb-3">
+            <label asp-for="Estado" class="form-label"></label>
+            <select asp-for="Estado" asp-items="Html.GetEnumSelectList<EstadoRecurso>()" class="form-select"></select>
+        </div>
+    </div>
+
+    @if (Model.Tipo == "Sala")
+    {
+        <div class="row">
+            <div class="col-6 mb-3">
+                <label asp-for="Capacidad" class="form-label"></label>
+                <input asp-for="Capacidad" type="number" class="form-control" />
+                <span asp-validation-for="Capacidad" class="text-danger small"></span>
+            </div>
+            <div class="col-6 mb-3">
+                <label asp-for="Piso" class="form-label"></label>
+                <input asp-for="Piso" type="number" class="form-control" />
+                <span asp-validation-for="Piso" class="text-danger small"></span>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <div class="col-12 col-md-6 mb-3">
+                <label asp-for="Marca" class="form-label"></label>
+                <input asp-for="Marca" class="form-control" />
+            </div>
+            <div class="col-12 col-md-6 mb-3">
+                <label asp-for="Serial" class="form-label"></label>
+                <input asp-for="Serial" class="form-control" />
+            </div>
+        </div>
+    }
+
+    <div class="d-flex gap-2">
+        <button type="submit" class="btn btn-usc">Guardar</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Cancelar</a>
+    </div>
+</form>

@@ -1,0 +1,92 @@
+@model IEnumerable<Recurso>
+@{
+    ViewData["Title"] = "Catálogo";
+    var tipoSel = ViewBag.Tipo as string;
+    var esAdmin = User.IsInRole(RolesApp.Administrador);
+}
+
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
+    <h1 class="h3 mb-0">Catálogo de equipos y salas</h1>
+    @if (esAdmin)
+    {
+        <div class="btn-group">
+            <a asp-action="Create" asp-route-tipo="Equipo" class="btn btn-usc btn-sm"><i class="bi bi-plus-lg"></i> Equipo</a>
+            <a asp-action="Create" asp-route-tipo="Sala" class="btn btn-outline-usc btn-sm"><i class="bi bi-plus-lg"></i> Sala</a>
+        </div>
+    }
+</div>
+
+<form method="get" class="card card-body shadow-sm mb-4">
+    <div class="row g-2 align-items-end">
+        <div class="col-12 col-md-4">
+            <label class="form-label small mb-1">Buscar</label>
+            <input name="q" value="@(ViewBag.Q as string)" class="form-control" placeholder="Nombre o código" />
+        </div>
+        <div class="col-12 col-sm-6 col-md-2">
+            <label class="form-label small mb-1">Tipo</label>
+            <select name="tipo" class="form-select">
+                <option value="">Todos</option>
+                <option value="Equipo" selected="@(tipoSel == "Equipo")">Equipos</option>
+                <option value="Sala" selected="@(tipoSel == "Sala")">Salas</option>
+            </select>
+        </div>
+        <div class="col-6 col-md-2">
+            <label class="form-label small mb-1">Disponible desde</label>
+            <input type="datetime-local" name="desde" value="@(ViewBag.Desde as string)" class="form-control" />
+        </div>
+        <div class="col-6 col-md-2">
+            <label class="form-label small mb-1">hasta</label>
+            <input type="datetime-local" name="hasta" value="@(ViewBag.Hasta as string)" class="form-control" />
+        </div>
+        <div class="col-12 col-md-2 d-grid">
+            <button type="submit" class="btn btn-usc"><i class="bi bi-search"></i> Filtrar</button>
+        </div>
+    </div>
+</form>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">No se encontraron recursos con esos filtros.</div>
+}
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-3">
+    @foreach (var r in Model)
+    {
+        <div class="col">
+            <div class="card recurso-card shadow-sm h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <span class="badge bg-dark"><i class="bi @(r is Sala ? "bi-door-open" : "bi-laptop")"></i> @r.Tipo</span>
+                        <span class="badge @r.Estado.ClaseBadge()">@r.Estado.Texto()</span>
+                    </div>
+                    <h2 class="h5 card-title mb-0">@r.Nombre</h2>
+                    <div class="text-muted small mb-2">@r.Codigo</div>
+                    <p class="card-text small mb-2">@r.Descripcion</p>
+                    <ul class="list-unstyled small mb-0">
+                        <li><i class="bi bi-geo-alt"></i> @r.Ubicacion</li>
+                        @if (r is Equipo e)
+                        {
+                            <li><i class="bi bi-tag"></i> @(string.IsNullOrWhiteSpace(e.Marca) ? "Sin marca" : e.Marca)</li>
+                        }
+                        else if (r is Sala s)
+                        {
+                            <li><i class="bi bi-people"></i> Capacidad: @s.Capacidad - Piso @s.Piso</li>
+                        }
+                        <li><i class="bi bi-clock"></i> Máximo: @r.DuracionMaximaPrestamo.ToTextoLegible()</li>
+                    </ul>
+                </div>
+                <div class="card-footer bg-white d-flex flex-wrap gap-2">
+                    @if (r.Estado == EstadoRecurso.Disponible)
+                    {
+                        <a asp-controller="Prestamos" asp-action="Crear" asp-route-recursoId="@r.Id" class="btn btn-usc btn-sm flex-grow-1">Solicitar</a>
+                    }
+                    @if (esAdmin)
+                    {
+                        <a asp-action="Edit" asp-route-id="@r.Id" class="btn btn-outline-secondary btn-sm"><i class="bi bi-pencil"></i></a>
+                        <a asp-action="Delete" asp-route-id="@r.Id" class="btn btn-outline-danger btn-sm"><i class="bi bi-trash"></i></a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,57 @@
+@model EstructurasViewModel
+@{ ViewData["Title"] = "Estructuras de datos"; }
+
+<h1 class="h3 mb-3">Estructuras de datos utilizadas</h1>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-white fw-semibold">Dónde se usa cada estructura y por qué</div>
+    <div class="table-responsive">
+        <table class="table mb-0 align-middle">
+            <thead class="table-light"><tr><th>Estructura</th><th>Uso en el proyecto</th><th>Justificación</th></tr></thead>
+            <tbody>
+                <tr><td><code>List&lt;T&gt;</code></td><td>Resultados de consultas (catálogo, préstamos)</td><td>Se recorren y se muestran en orden; no se busca por clave.</td></tr>
+                <tr><td><code>HashSet&lt;int&gt;</code></td><td>Ids de recursos ocupados al filtrar disponibilidad</td><td>Pregunta "¿está ocupado?" en O(1) y sin duplicados.</td></tr>
+                <tr><td><code>Dictionary&lt;K,V&gt;</code></td><td>Conteo de préstamos por estado; colas por recurso</td><td>Acceso directo por clave en O(1).</td></tr>
+                <tr><td><code>Queue&lt;T&gt;</code></td><td>Lista de espera de cada recurso</td><td>FIFO: quien pidió primero es atendido primero; Dequeue en O(1).</td></tr>
+                <tr><td><code>Stack&lt;T&gt;</code></td><td>Bitácora de actividad reciente</td><td>LIFO: lo más nuevo queda arriba; Push en O(1).</td></tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card shadow-sm mb-4">
+    <div class="card-header bg-white fw-semibold">Comparación medida en esta ejecución</div>
+    <div class="table-responsive">
+        <table class="table table-sm mb-0 align-middle">
+            <thead class="table-light"><tr><th>Escenario</th><th>Estructura</th><th>Complejidad</th><th class="text-end">Tiempo (ms)</th></tr></thead>
+            <tbody>
+            @foreach (var r in Model.Resultados)
+            {
+                <tr><td>@r.Escenario</td><td><code>@r.Estructura</code></td><td>@r.Complejidad</td><td class="text-end">@r.Milisegundos.ToString("N3")</td></tr>
+            }
+            </tbody>
+        </table>
+    </div>
+    <div class="card-footer bg-white small text-muted">Recarga la página para repetir la medición. Parámetros: 20.000 elementos, 1.000 búsquedas.</div>
+</div>
+
+<div class="row g-4">
+    <div class="col-12 col-lg-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-white fw-semibold">Bitácora (Stack) - más reciente primero</div>
+            <ul class="list-group list-group-flush small">
+                @if (!Model.Historial.Any()) { <li class="list-group-item text-muted">Sin actividad todavía.</li> }
+                @foreach (var linea in Model.Historial) { <li class="list-group-item">@linea</li> }
+            </ul>
+        </div>
+    </div>
+    <div class="col-12 col-lg-6">
+        <div class="card shadow-sm h-100">
+            <div class="card-header bg-white fw-semibold">Listas de espera (Queue)</div>
+            <ul class="list-group list-group-flush small">
+                @if (!Model.ColaEspera.Any()) { <li class="list-group-item text-muted">Nadie en lista de espera.</li> }
+                @foreach (var s in Model.ColaEspera) { <li class="list-group-item">Recurso #@s.RecursoId - @s.NombreUsuario (@s.FechaSolicitud.ToTextoCorto())</li> }
+            </ul>
+        </div>
+    </div>
+</div>
