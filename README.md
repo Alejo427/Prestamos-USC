@@ -23,12 +23,6 @@ Abre http://localhost:5080. La base `prestamos.db` (SQLite) se crea sola con rol
 
 > Nota de versión: los `.csproj` apuntan a `net8.0` y paquetes `8.0.*`. Si tu SDK es .NET 9 o 10, cambia `net8.0` por `net9.0`/`net10.0` y `8.0.*` por `9.0.*`/`10.0.*` en ambos `.csproj`.
 
-### Migraciones de EF Core (recomendado para la documentación)
-```bash
-dotnet ef migrations add Inicial -p PrestamosUSC.Core -s PrestamosUSC.Web
-dotnet ef database update -p PrestamosUSC.Core -s PrestamosUSC.Web
-```
-Si no creas migraciones, la app usa `EnsureCreated` y funciona igual.
 
 ## Estructura
 ```
@@ -58,7 +52,7 @@ PrestamosUSC.sln
 - **Administrador**: CRUD de equipos/salas, ver todos los préstamos, devolver/cancelar cualquiera, cambiar roles, ver estructuras de datos.
 - **Estudiante** (rol por defecto al registrarse): ver catálogo, solicitar, devolver/cancelar sus préstamos.
 
-## Cumplimiento del enunciado (Workshop__1_.pdf)
+## Cumplimiento del enunciado
 | Requisito | Estado |
 |---|---|
 | Biblioteca de clases con lógica de dominio y negocio | Hecho (`PrestamosUSC.Core`) |
@@ -71,10 +65,7 @@ PrestamosUSC.sln
 | Repositorio en GitHub | Pendiente: `git init`, commit y push |
 | Reporte de páginas + diapositivas (15 min) | Pendiente (se arma con este proyecto) |
 
-## Características de C# / .NET cubiertas (para la sustentación)
-Clases abstractas, herencia y polimorfismo · interfaces · genéricos (`IRepositorio<T>`) · delegados y eventos (`PrestamoEventHandler`) ·
-LINQ · async/await · colecciones (`List`, `HashSet`, `Dictionary`, `Queue`, `Stack`) · records · métodos de extensión ·
-pattern matching y switch expressions · enums · propiedades calculadas · manejo de excepciones personalizadas ·
+
 tipos anulables · inyección de dependencias · EF Core (TPH, relaciones, migraciones) · ASP.NET Core Identity · lambdas · tuplas/`out`.
 
 ## Esquema sugerido para los 15 minutos
