@@ -67,8 +67,3 @@ PrestamosUSC.sln
 
 
 tipos anulables · inyección de dependencias · EF Core (TPH, relaciones, migraciones) · ASP.NET Core Identity · lambdas · tuplas/`out`.
-
-## Esquema sugerido para los 15 minutos
-1. Problemática (2 min) 2. Justificación (2 min) 3. Metodología (2 min: MVC, capas, EF Core, Identity)
-4. Demostración (6 min: login por rol, catálogo, préstamo, traslape + lista de espera, devolución, vista de estructuras, vista en celular)
-5. Conclusiones (3 min). Recordar: solo diapositivas, sin otro dispositivo de apoyo.
