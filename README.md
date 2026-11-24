@@ -60,10 +60,10 @@ PrestamosUSC.sln
 | Entity Framework Core | Hecho (SQLite, TPH, migraciones opcionales) |
 | Estructuras de datos justificadas y comparadas | Hecho (Admin > Estructuras de datos) |
 | ASP.NET Core Identity con ≥ 2 roles | Hecho (Administrador, Estudiante) |
-| Diseño responsive (tablet y smartphone) | Hecho (Bootstrap 5); falta tomar las capturas |
+| Diseño responsive (tablet y smartphone) | Hecho (Bootstrap 5) carpeta /docs |
 | Aplicación de escritorio | Pendiente (siguiente fase) |
-| Repositorio en GitHub | Pendiente: `git init`, commit y push |
-| Reporte de páginas + diapositivas (15 min) | Pendiente (se arma con este proyecto) |
+| Repositorio en GitHub | Hecho: `git init`, commit y push |
+| Reporte de páginas + diapositivas (15 min) | Hecho |
 
 
 tipos anulables · inyección de dependencias · EF Core (TPH, relaciones, migraciones) · ASP.NET Core Identity · lambdas · tuplas/`out`.
