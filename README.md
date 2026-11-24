@@ -92,7 +92,7 @@ PrestamosUSC.sln
 | ASP.NET Core Identity con ≥ 2 roles | Hecho (Administrador, Estudiante) |
 <<<<<<< HEAD
 | Diseño responsive (tablet y smartphone) | Hecho (Bootstrap 5) carpeta /docs |
-| Aplicación de escritorio | Pendiente (siguiente fase) |
+| Aplicación de escritorio | Hecho |
 | Repositorio en GitHub | Hecho: `git init`, commit y push |
 | Reporte de páginas + diapositivas (15 min) | Hecho |
 
@@ -108,12 +108,3 @@ tipos anulables · inyección de dependencias · EF Core (TPH, relaciones, migra
 ## Características de C# y .NET
 
 Clases abstractas, herencia, polimorfismo, interfaces, genéricos, delegados y eventos, LINQ, `async`/`await`, colecciones, records, métodos de extensión, pattern matching, enums, excepciones personalizadas, tipos anulables, inyección de dependencias, EF Core, ASP.NET Core Identity y Windows Forms.
-
-## Esquema sugerido para la sustentación (15 minutos)
-
-1. Problemática (2 min).
-2. Justificación (2 min).
-3. Metodología (2 min). Explicar la organización en capas, MVC, WinForms, EF Core e Identity.
-4. Demostración (6 min). Mostrar el catálogo y el flujo de un préstamo, comprobar el cambio entre escritorio y web, y presentar las capturas responsive.
-5. Conclusiones (3 min).
->>>>>>> 2bdfdc0 (docs(readme): documenta la aplicacion de escritorio")
