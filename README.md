@@ -38,16 +38,8 @@ dotnet build PrestamosUSC.sln
 
 | Rol | Correo | Contraseña |
 |---|---|---|
-<<<<<<< HEAD
-| Administrador | admin@usc.edu.co | Admin123* |
-| Estudiante | estudiante@usc.edu.co | Estudiante123* |
-
-> Nota de versión: los `.csproj` apuntan a `net8.0` y paquetes `8.0.*`. Si tu SDK es .NET 9 o 10, cambia `net8.0` por `net9.0`/`net10.0` y `8.0.*` por `9.0.*`/`10.0.*` en ambos `.csproj`.
-
-=======
 | Administrador | admin@usc.edu.co | `Admin123*` |
 | Estudiante | estudiante@usc.edu.co | `Estudiante123*` |
->>>>>>> 2bdfdc0 (docs(readme): documenta la aplicacion de escritorio")
 
 ## Estructura
 ```
@@ -90,15 +82,6 @@ PrestamosUSC.sln
 | Entity Framework Core | Hecho (SQLite, TPH, migraciones incluidas) |
 | Estructuras de datos justificadas y comparadas | Hecho (Admin > Estructuras de datos) |
 | ASP.NET Core Identity con ≥ 2 roles | Hecho (Administrador, Estudiante) |
-<<<<<<< HEAD
-| Diseño responsive (tablet y smartphone) | Hecho (Bootstrap 5) carpeta /docs |
-| Aplicación de escritorio | Pendiente (siguiente fase) |
-| Repositorio en GitHub | Hecho: `git init`, commit y push |
-| Reporte de páginas + diapositivas (15 min) | Hecho |
-
-
-tipos anulables · inyección de dependencias · EF Core (TPH, relaciones, migraciones) · ASP.NET Core Identity · lambdas · tuplas/`out`.
-=======
 | Diseño responsive (tablet y smartphone) | Hecho con Bootstrap 5. [Capturas de celular y tablet](docs/capturas) |
 | Aplicación de escritorio | Hecho con Windows Forms (`PrestamosUSC.Desktop`) |
 | Repositorio en GitHub | Hecho |
@@ -116,4 +99,3 @@ Clases abstractas, herencia, polimorfismo, interfaces, genéricos, delegados y e
 3. Metodología (2 min). Explicar la organización en capas, MVC, WinForms, EF Core e Identity.
 4. Demostración (6 min). Mostrar el catálogo y el flujo de un préstamo, comprobar el cambio entre escritorio y web, y presentar las capturas responsive.
 5. Conclusiones (3 min).
->>>>>>> 2bdfdc0 (docs(readme): documenta la aplicacion de escritorio")
